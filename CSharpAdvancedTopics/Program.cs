@@ -88,38 +88,60 @@ namespace CSharpAdvancedTopics
 
             #region LINQ
 
-            var books = new BookRepository().GetBooks();
+            //var books = new BookRepository().GetBooks();
 
-            //linq query operators
-            var cheaperBooks = from b in books
-                               where b.Price < 10
-                               orderby b.Title
-                               select b.Title;
+            ////linq query operators
+            //var cheaperBooks = from b in books
+            //                   where b.Price < 10
+            //                   orderby b.Title
+            //                   select b.Title;
 
-            //linq Extension methods
-            var cheapBooks = books
-                                .Where(b => b.Price < 10)
-                                .OrderBy(b => b.Title)
-                                .Select(b => b.Title);
+            ////linq Extension methods
+            //var cheapBooks = books
+            //                    .Where(b => b.Price < 10)
+            //                    .OrderBy(b => b.Title)
+            //                    .Select(b => b.Title);
 
-            var singleBook = books.SingleOrDefault(b => b.Title.Equals("Title 1"));
-            Console.WriteLine(singleBook.Title);
+            //var singleBook = books.SingleOrDefault(b => b.Title.Equals("Title 1"));
+            //Console.WriteLine(singleBook.Title);
 
-            var skippedBooks = books.Skip(2).Take(3);
-            
-            foreach (var book in skippedBooks)
-            {
-                Console.WriteLine(book.Title);
-            }
+            //var skippedBooks = books.Skip(2).Take(3);
 
-            var count = books.Count;
-            Console.WriteLine(count);
+            //foreach (var book in skippedBooks)
+            //{
+            //    Console.WriteLine(book.Title);
+            //}
 
-            var max = books.Max(b => b.Price);
-            var min = books.Min(b => b.Price);
+            //var count = books.Count;
+            //Console.WriteLine(count);
 
-            Console.WriteLine(max);
-            Console.WriteLine(min);
+            //var max = books.Max(b => b.Price);
+            //var min = books.Min(b => b.Price);
+
+            //Console.WriteLine(max);
+            //Console.WriteLine(min);
+
+            #endregion
+
+            #region NULLABLE TYPES
+
+            //DateTime? date = null;
+
+            //Console.WriteLine("Value or default " + date.GetValueOrDefault());
+            //Console.WriteLine("date has value " + date.HasValue);
+            //Console.WriteLine("date " + date.Value);
+
+            //DateTime? date = new DateTime(2014, 1, 1);
+            //DateTime date2 = date.GetValueOrDefault();
+
+            //Console.WriteLine(date2);
+
+            DateTime? date = null;
+            DateTime date2 = date ?? DateTime.Today;
+
+            DateTime date3 = date != null ? date.GetValueOrDefault() : DateTime.Today;
+
+            Console.WriteLine(date2);
 
             #endregion
         }
