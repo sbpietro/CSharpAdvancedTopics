@@ -1,5 +1,6 @@
 ﻿using CSharpAdvancedTopics.Delegates;
 using CSharpAdvancedTopics.Events;
+using CSharpAdvancedTopics.Extension_Methods;
 using CSharpAdvancedTopics.Generics;
 using CSharpAdvancedTopics.LambdaExpressions;
 using System;
@@ -63,15 +64,24 @@ namespace CSharpAdvancedTopics
 
             #region EVENTS
 
-            var video = new Video() { Title = "Video 1" };
-            var videoEncoder = new VideoEncoder(); //publisher
-            var mailService = new MailService(); //subscriber
-            var messageService = new MessageService(); //subscriber
+            //var video = new Video() { Title = "Video 1" };
+            //var videoEncoder = new VideoEncoder(); //publisher
+            //var mailService = new MailService(); //subscriber
+            //var messageService = new MessageService(); //subscriber
 
-            videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
-            videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
+            //videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+            //videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
 
-            videoEncoder.Encode(video);
+            //videoEncoder.Encode(video);
+
+            #endregion
+
+            #region EXTENSION METHODS
+
+            var post = "This is supposed to be a very long blog post bla bla bla bla bla bla...";
+            var shortenedPost = post.Shorten(5);
+
+            Console.WriteLine(shortenedPost);
 
             #endregion
         }
