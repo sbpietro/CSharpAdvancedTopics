@@ -1,4 +1,5 @@
 ﻿using CSharpAdvancedTopics.Delegates;
+using CSharpAdvancedTopics.Events;
 using CSharpAdvancedTopics.Generics;
 using CSharpAdvancedTopics.LambdaExpressions;
 using System;
@@ -44,19 +45,33 @@ namespace CSharpAdvancedTopics
 
             #region LAMBDA EXPRESSIONS
 
-            Func<int, int> Square = number => number * number;
-            Console.WriteLine(Square(5));
+            //Func<int, int> Square = number => number * number;
+            //Console.WriteLine(Square(5));
 
-            const int factor = 5;
-            Func<int, int> Multiplier = n => n * factor;
-            Console.WriteLine(Multiplier(10));
+            //const int factor = 5;
+            //Func<int, int> Multiplier = n => n * factor;
+            //Console.WriteLine(Multiplier(10));
 
-            var books = new BookRepository().GetBooks();
-            var cheapBooks = books.FindAll(b => b.Price < 10);
-            foreach (var book in cheapBooks)
-            {
-                Console.WriteLine(book.Title);
-            }
+            //var books = new BookRepository().GetBooks();
+            //var cheapBooks = books.FindAll(b => b.Price < 10);
+            //foreach (var book in cheapBooks)
+            //{
+            //    Console.WriteLine(book.Title);
+            //}
+
+            #endregion
+
+            #region EVENTS
+
+            var video = new Video() { Title = "Video 1" };
+            var videoEncoder = new VideoEncoder(); //publisher
+            var mailService = new MailService(); //subscriber
+            var messageService = new MessageService(); //subscriber
+
+            videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+            videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
+
+            videoEncoder.Encode(video);
 
             #endregion
         }
