@@ -1,5 +1,6 @@
 ﻿using CSharpAdvancedTopics.Delegates;
 using CSharpAdvancedTopics.Generics;
+using CSharpAdvancedTopics.LambdaExpressions;
 using System;
 using System.Net.Http.Headers;
 
@@ -31,17 +32,33 @@ namespace CSharpAdvancedTopics
 
             #region DELEGATES
 
-            var processor = new PhotoProcessor();
-            var filters = new PhotoFilters();
-            Action<Photo> filterHandler = filters.ApplyBrightness;
-            filterHandler += filters.ApplyContrast;
-            filterHandler += CustomFilter.ApplyRemoveRedEye;
+            //var processor = new PhotoProcessor();
+            //var filters = new PhotoFilters();
+            //Action<Photo> filterHandler = filters.ApplyBrightness;
+            //filterHandler += filters.ApplyContrast;
+            //filterHandler += CustomFilter.ApplyRemoveRedEye;
 
-            processor.Process("path", filterHandler);
+            //processor.Process("path", filterHandler);
+
+            #endregion
+
+            #region LAMBDA EXPRESSIONS
+
+            Func<int, int> Square = number => number * number;
+            Console.WriteLine(Square(5));
+
+            const int factor = 5;
+            Func<int, int> Multiplier = n => n * factor;
+            Console.WriteLine(Multiplier(10));
+
+            var books = new BookRepository().GetBooks();
+            var cheapBooks = books.FindAll(b => b.Price < 10);
+            foreach (var book in cheapBooks)
+            {
+                Console.WriteLine(book.Title);
+            }
 
             #endregion
         }
-
-        
     }
 }
