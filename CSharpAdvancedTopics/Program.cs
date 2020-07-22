@@ -136,12 +136,30 @@ namespace CSharpAdvancedTopics
 
             //Console.WriteLine(date2);
 
-            DateTime? date = null;
-            DateTime date2 = date ?? DateTime.Today;
+            //DateTime? date = null;
+            //DateTime date2 = date ?? DateTime.Today;
 
-            DateTime date3 = date != null ? date.GetValueOrDefault() : DateTime.Today;
+            //DateTime date3 = date != null ? date.GetValueOrDefault() : DateTime.Today;
 
-            Console.WriteLine(date2);
+            //Console.WriteLine(date2);
+
+            #endregion
+
+            #region DYNAMICS
+
+            object obj = "Stefano";
+            var methodInfo = obj.GetType().GetMethod("GetHashCode");
+            methodInfo.Invoke(null, null);
+
+            dynamic excel = "stefano";
+            excel.Optimize();
+
+            dynamic name = "stefano";
+            //name = 10;
+            name++;
+
+            int i = 5;
+            dynamic d = i;
 
             #endregion
         }
