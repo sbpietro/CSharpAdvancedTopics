@@ -4,6 +4,7 @@ using CSharpAdvancedTopics.Extension_Methods;
 using CSharpAdvancedTopics.Generics;
 using CSharpAdvancedTopics.LambdaExpressions;
 using System;
+using System.Linq;
 using System.Net.Http.Headers;
 
 namespace CSharpAdvancedTopics
@@ -78,10 +79,47 @@ namespace CSharpAdvancedTopics
 
             #region EXTENSION METHODS
 
-            var post = "This is supposed to be a very long blog post bla bla bla bla bla bla...";
-            var shortenedPost = post.Shorten(5);
+            //var post = "This is supposed to be a very long blog post bla bla bla bla bla bla...";
+            //var shortenedPost = post.Shorten(5);
 
-            Console.WriteLine(shortenedPost);
+            //Console.WriteLine(shortenedPost);
+
+            #endregion
+
+            #region LINQ
+
+            var books = new BookRepository().GetBooks();
+
+            //linq query operators
+            var cheaperBooks = from b in books
+                               where b.Price < 10
+                               orderby b.Title
+                               select b.Title;
+
+            //linq Extension methods
+            var cheapBooks = books
+                                .Where(b => b.Price < 10)
+                                .OrderBy(b => b.Title)
+                                .Select(b => b.Title);
+
+            var singleBook = books.SingleOrDefault(b => b.Title.Equals("Title 1"));
+            Console.WriteLine(singleBook.Title);
+
+            var skippedBooks = books.Skip(2).Take(3);
+            
+            foreach (var book in skippedBooks)
+            {
+                Console.WriteLine(book.Title);
+            }
+
+            var count = books.Count;
+            Console.WriteLine(count);
+
+            var max = books.Max(b => b.Price);
+            var min = books.Min(b => b.Price);
+
+            Console.WriteLine(max);
+            Console.WriteLine(min);
 
             #endregion
         }
