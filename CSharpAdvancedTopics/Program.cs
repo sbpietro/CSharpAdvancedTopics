@@ -204,16 +204,21 @@ namespace CSharpAdvancedTopics
             //    Console.WriteLine("Unexpected error occurred");
             //}
 
-            try
-            {
-                var api = new YoutubeApi();
-                var videos = api.GetVideos("stefano");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
+            //try
+            //{
+            //    var api = new YoutubeApi();
+            //    var videos = api.GetVideos("stefano");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+            #endregion
+
+            #region ASYNC PROGRAMMING
+
+            //synchronous
 
 
             #endregion
