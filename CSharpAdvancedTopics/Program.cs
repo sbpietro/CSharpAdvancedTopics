@@ -1,9 +1,11 @@
 ﻿using CSharpAdvancedTopics.Delegates;
 using CSharpAdvancedTopics.Events;
+using CSharpAdvancedTopics.ExceptionHandling;
 using CSharpAdvancedTopics.Extension_Methods;
 using CSharpAdvancedTopics.Generics;
 using CSharpAdvancedTopics.LambdaExpressions;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -147,19 +149,72 @@ namespace CSharpAdvancedTopics
 
             #region DYNAMICS
 
-            object obj = "Stefano";
-            var methodInfo = obj.GetType().GetMethod("GetHashCode");
-            methodInfo.Invoke(null, null);
+            //object obj = "Stefano";
+            //var methodInfo = obj.GetType().GetMethod("GetHashCode");
+            //methodInfo.Invoke(null, null);
 
-            dynamic excel = "stefano";
-            excel.Optimize();
+            //dynamic excel = "stefano";
+            //excel.Optimize();
 
-            dynamic name = "stefano";
-            //name = 10;
-            name++;
+            //dynamic name = "stefano";
+            ////name = 10;
+            //name++;
 
-            int i = 5;
-            dynamic d = i;
+            //int i = 5;
+            //dynamic d = i;
+
+            #endregion
+
+            #region EXCEPTION HANDLING
+
+            //try
+            //{
+            //    var calculator = new Calculator();
+            //    var result = calculator.Divide(5, 0);
+            //}
+            //catch(DivideByZeroException ex)
+            //{
+            //    Console.WriteLine("You cannot divide by zero");
+            //}
+            //catch(ArithmeticException ex)
+            //{
+
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("Unexpected error occurred");
+            //}
+
+            //try
+            //{
+            //    using (var streamReader = new StreamReader(@"c://file.zip"))
+            //    {
+            //        var content = streamReader.ReadToEnd();
+            //    }
+
+
+            //    throw new Exception("Oops");
+            //}
+            //catch(FileNotFoundException ex)
+            //{
+            //    Console.WriteLine("File not found");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Unexpected error occurred");
+            //}
+
+            try
+            {
+                var api = new YoutubeApi();
+                var videos = api.GetVideos("stefano");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+
 
             #endregion
         }
